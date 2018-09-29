@@ -1,0 +1,6 @@
+C:\Users\Edward\source\repos\Algebraic\Algebraic\bin\Debug\Algebraic.dll
+C:\Users\Edward\source\repos\Algebraic\Algebraic\bin\Debug\Algebraic.pdb
+C:\Users\Edward\source\repos\Algebraic\Algebraic\obj\Debug\Algebraic.csprojResolveAssemblyReference.cache
+C:\Users\Edward\source\repos\Algebraic\Algebraic\obj\Debug\Algebraic.csproj.CoreCompileInputs.cache
+C:\Users\Edward\source\repos\Algebraic\Algebraic\obj\Debug\Algebraic.dll
+C:\Users\Edward\source\repos\Algebraic\Algebraic\obj\Debug\Algebraic.pdb

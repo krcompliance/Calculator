@@ -1,0 +1,6 @@
+C:\Users\Edward\source\repos\Trigonometric\Trigonometric\bin\Debug\Trigonometric.dll
+C:\Users\Edward\source\repos\Trigonometric\Trigonometric\bin\Debug\Trigonometric.pdb
+C:\Users\Edward\source\repos\Trigonometric\Trigonometric\obj\Debug\Trigonometric.csprojResolveAssemblyReference.cache
+C:\Users\Edward\source\repos\Trigonometric\Trigonometric\obj\Debug\Trigonometric.csproj.CoreCompileInputs.cache
+C:\Users\Edward\source\repos\Trigonometric\Trigonometric\obj\Debug\Trigonometric.dll
+C:\Users\Edward\source\repos\Trigonometric\Trigonometric\obj\Debug\Trigonometric.pdb

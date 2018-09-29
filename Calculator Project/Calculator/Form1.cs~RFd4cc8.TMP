@@ -1,0 +1,514 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Calculator
+{
+    public partial class CalculatorForm : Form
+    {
+        //Add comments here that explain these 4 Operator methods
+        //Explain each of the Variables
+        double total1 = 0; //Change these names to improve clarity
+        double total2 = 0; //Try using the built-in REFACTOR
+        bool plusButtonClicked = false;
+        bool minusButtonClicked = false;
+        bool divideButtonClicked = false;
+        bool multiplyButtonClicked = false;
+
+        bool sineButtonClicked = false;
+        bool cosineButtonClicked = false;
+        bool tangentButtonClicked = false;
+        bool sqrtButtonClicked = false;
+        bool cubeRButtonClicked = false;
+
+        public CalculatorForm()
+        {
+            InitializeComponent();
+            txtDisplay.Clear();
+        }
+
+        private void txtDisplay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        // Button Zero
+        private void btnZero_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnZero.Text;
+        }
+        // Button One
+        private void btnOne_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnOne.Text;
+        }
+        // Button Two
+        private void btnTwo_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnTwo.Text;
+        }
+        // Button Three
+        private void btnThree_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnThree.Text;
+        }
+        // Button Four
+        private void btnFour_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnFour.Text;
+        }
+        // button Five
+        private void btnFive_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnFive.Text;
+        }
+        // Button Six
+        private void btnSix_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnSix.Text;
+        }
+        // Button Seven
+        private void btnSeven_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnSeven.Text;
+        }
+        // Button Eight
+        private void btnEight_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnEight.Text;
+        }
+        // Button Nine
+        private void btnNine_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnNine.Text;
+        }
+
+        // Run the Clear button
+        // Clear a text field
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Clear();
+
+            plusButtonClicked = false;
+            minusButtonClicked = false;
+            divideButtonClicked = false;
+            multiplyButtonClicked = false;
+
+            sineButtonClicked = false;
+            cosineButtonClicked = false;
+            tangentButtonClicked = false;
+        }
+
+        // Button Point
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = txtDisplay.Text + btnDot.Text;
+        }
+        
+        // Add a number
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            // Check if the initial value is  null
+        //    if (String.IsNullOrEmpty(txtDisplay.Text))
+        //    {
+       //         MessageBox.Show("Please enter a digit first", "Notice");
+       //         return;
+       //     }
+            // If a user keeps using a serial of operand button, calculate the operation expression
+            // if not, Set the initial value to a temporary valuables
+            if (!clickedMathButtonExist())
+                total1 += double.Parse(txtDisplay.Text);
+
+            // Clear the text box
+            txtDisplay.Clear();
+
+            plusButtonClicked = true;
+
+            minusButtonClicked = false;
+            divideButtonClicked = false;
+            multiplyButtonClicked = false;
+            sineButtonClicked = false;
+            cosineButtonClicked = false;
+            tangentButtonClicked = false;
+
+            sqrtButtonClicked = false;
+            cubeRButtonClicked = false;
+        }
+
+        //Subtract a number
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtDisplay.Text))
+            {
+                MessageBox.Show("Please enter a digit first", "Notice");
+                return;
+            }
+            if (!clickedMathButtonExist())
+                total1 += double.Parse(txtDisplay.Text);
+
+            txtDisplay.Clear();
+
+            minusButtonClicked = true;
+
+            plusButtonClicked = false;
+            divideButtonClicked = false;
+            multiplyButtonClicked = false;
+            sineButtonClicked = false;
+            cosineButtonClicked = false;
+            tangentButtonClicked = false;
+
+            sqrtButtonClicked = false;
+            cubeRButtonClicked = false;
+        }
+
+        // Devide a number
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtDisplay.Text))
+            {
+                MessageBox.Show("Please enter a digit first", "Notice");
+                return;
+            }
+            if (!clickedMathButtonExist())
+                total1 += double.Parse(txtDisplay.Text);
+
+            txtDisplay.Clear();
+            divideButtonClicked = true;
+
+            plusButtonClicked = false;
+            minusButtonClicked = false;
+            
+            multiplyButtonClicked = false;
+            sineButtonClicked = false;
+            cosineButtonClicked = false;
+            tangentButtonClicked = false;
+
+            sqrtButtonClicked = false;
+            cubeRButtonClicked = false;
+        }
+
+        // Multiply a number
+        private void btnMultiply_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtDisplay.Text))
+            {
+                MessageBox.Show("Please enter a digit first", "Notice");
+                return;
+            }
+            if (!clickedMathButtonExist())
+                total1 += double.Parse(txtDisplay.Text);
+
+            txtDisplay.Clear();
+            multiplyButtonClicked = true;
+
+            plusButtonClicked = false;
+            minusButtonClicked = false;
+            divideButtonClicked = false;
+           
+            sineButtonClicked = false;
+            cosineButtonClicked = false;
+            tangentButtonClicked = false;
+
+            sqrtButtonClicked = false;
+            cubeRButtonClicked = false;
+        }
+
+        // Calculate and display a result
+        private void btnEquals_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtDisplay.Text.Trim()))
+            {
+                if ((plusButtonClicked == true) ||
+                   (minusButtonClicked == true) ||
+                   (divideButtonClicked == true) ||
+                   (multiplyButtonClicked == true))
+                {
+                    //MessageBox.Show("Warning", "Please enter a digit");
+                    txtDisplay.Text = total1.ToString();
+                    total1 = 0;
+
+                    plusButtonClicked = false;
+                    minusButtonClicked = false;
+                    divideButtonClicked = false;
+                    multiplyButtonClicked = false;
+
+                    sineButtonClicked = false;
+                    cosineButtonClicked = false;
+                    tangentButtonClicked = false;
+
+                    sqrtButtonClicked = false;
+                    cubeRButtonClicked = false;
+
+                    return;
+                }
+            }
+
+            if (plusButtonClicked == true)
+            {
+                total2 = BasicMath.Arithmetic.Add(total1, double.Parse(txtDisplay.Text));
+            }
+            else if (minusButtonClicked == true)
+            {
+                total2 = BasicMath.Arithmetic.Sub(total1, double.Parse(txtDisplay.Text));
+            }
+            else if (divideButtonClicked == true)
+            {
+                total2 = BasicMath.Arithmetic.Div(total1, double.Parse(txtDisplay.Text));
+            }
+            else if (multiplyButtonClicked == true)
+            {
+                total2 = BasicMath.Arithmetic.Mult(total1, double.Parse(txtDisplay.Text));
+            }
+            txtDisplay.Text = total2.ToString();
+            total1 = 0;
+
+            plusButtonClicked = false;
+            minusButtonClicked = false;
+            divideButtonClicked = false;
+            multiplyButtonClicked = false;
+
+            sineButtonClicked = false;
+            cosineButtonClicked = false;
+            tangentButtonClicked = false;
+            
+            sqrtButtonClicked = false;
+            cubeRButtonClicked = false;
+        }
+
+        // Calcualte a sub total before click a equal button
+        private Boolean clickedMathButtonExist()
+        {
+            Boolean isExist = false;
+            if (plusButtonClicked == true)
+            {
+                total1 = BasicMath.Arithmetic.Add(total1, double.Parse(txtDisplay.Text));
+                isExist = true;
+            }
+            else if (minusButtonClicked == true)
+            {
+                total1 = BasicMath.Arithmetic.Sub(total1, double.Parse(txtDisplay.Text));
+                isExist = true;
+            }
+            else if (divideButtonClicked == true)
+            {
+                total1 = BasicMath.Arithmetic.Div(total1, double.Parse(txtDisplay.Text));
+                isExist = true;
+            }
+            else if (multiplyButtonClicked == true)
+            {
+                total1 = BasicMath.Arithmetic.Mult(total1, double.Parse(txtDisplay.Text));
+                isExist = true;
+            }
+            else
+            {  }
+
+            return isExist;
+        }
+
+        // Calculate a sine
+        private void btnSin_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtDisplay.Text))
+            {
+                MessageBox.Show("Please enter a digit first", "Notice");
+                return;
+            }
+            double num = double.Parse(txtDisplay.Text);
+            if (num >= 0)
+            {
+                txtDisplay.Text = Trigonometric.Trigonometric.Sine(num).ToString();
+                sineButtonClicked = true;
+            }
+            else
+            {
+                MessageBox.Show("Number must be positive", "Error Message");
+                txtDisplay.Text = "0";
+            }
+        }
+
+        // Calculate a cosine
+        private void btnCos_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtDisplay.Text))
+            {
+                MessageBox.Show("Please enter a digit first", "Notice");
+                return;
+            }
+            double num = double.Parse(txtDisplay.Text);
+            if (num >= 0)
+            {
+                txtDisplay.Text = Trigonometric.Trigonometric.Cosine(num).ToString();
+                cosineButtonClicked = true;
+            }
+            else
+            {
+                MessageBox.Show("Number must be positive", "Error Message");
+                txtDisplay.Text = "0";
+            }
+        }
+
+        // Calculate a tangent
+        private void btnTan_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtDisplay.Text))
+            {
+                MessageBox.Show("Please enter a digit first", "Notice");
+                return;
+            }
+            double num = double.Parse(txtDisplay.Text);
+            
+            if (num >= 0)
+            {
+                if(num == 90)
+                {
+                    MessageBox.Show("Warning", "Number is invalid");
+                    return;
+                }
+                txtDisplay.Text = Trigonometric.Trigonometric.Tangent(num).ToString();
+                tangentButtonClicked = true;
+            }
+            else
+            {
+                MessageBox.Show("Number must be positive", "Error Message");
+                txtDisplay.Text = "0";
+            }
+        }
+
+        // Calculate a Square Root
+        private void btnSqrt_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtDisplay.Text))
+            {
+                MessageBox.Show("Please enter a digit first", "Notice");
+                return;
+            }
+            double num = double.Parse(txtDisplay.Text);
+            if (num >= 0)
+            {
+                txtDisplay.Text = Algebraic.Algebraic.SquareRoot(num).ToString();
+                sqrtButtonClicked = true;
+            }
+            else
+            {
+                MessageBox.Show("Number must be positive", "Error Message");
+                txtDisplay.Text = "0";
+            }
+        }
+
+        // Calculate a Cube Root
+        private void btncubeRT_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtDisplay.Text))
+            {
+                MessageBox.Show("Please enter a digit first", "Notice");
+                return;
+            }
+            double num = double.Parse(txtDisplay.Text);
+            if (num >= 0)
+            {
+                txtDisplay.Text = Algebraic.Algebraic.CubeRT(num).ToString();
+                cubeRButtonClicked = true;
+            }
+            else
+            {
+                MessageBox.Show("Number must be positive", "Error Message");
+                txtDisplay.Text = "0";
+            }
+        }
+
+        // Calculate a Inverse
+        private void btnInv_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtDisplay.Text))
+            {
+                MessageBox.Show("Please enter a digit first", "Notice");
+                return;
+            }
+
+            String inverseType = "";
+
+            double num = double.Parse(txtDisplay.Text);
+            if (num >= 0 )
+            {
+                if(sineButtonClicked)
+                {
+                    if (num >= -1 && num <= 1)
+                    { }
+                    else
+                    {
+                        MessageBox.Show("Warning", "Target number must be greater than or equal to -1, but less than or equal to 1 ");
+                        return;
+                    }
+                    inverseType = "Sin";
+                } else if(cosineButtonClicked)
+                {
+                    if (num >= -1 && num <= 1)
+                    { }
+                    else
+                    {
+                        MessageBox.Show("Warning", "Target number must be greater than or equal to -1, but less than or equal to 1 ");
+                        return;
+                    }
+                    inverseType = "Cos";
+                } else if (tangentButtonClicked)
+                {
+                    if (num >= -1 && num <= 1)
+                    { }
+                    else
+                    {
+                        MessageBox.Show("Warning", "Target number must be greater than or equal to -1, but less than or equal to 1 ");
+                        return;
+                    }
+                    inverseType = "Tan";
+                }
+                else if (sqrtButtonClicked)
+                {
+
+                    inverseType = "Sqrt";
+                }
+                else if (cubeRButtonClicked)
+                {
+                    inverseType = "cubeR";
+                }
+
+                txtDisplay.Text = Algebraic.Algebraic.Inverse(inverseType, num).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Number must be positive", "Error Message");
+                txtDisplay.Text = "0";
+            }
+        }
+
+        // Receive a quit command from the memu
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Really Quit?", "Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
+
+        // Receive a clear command from the menu
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Clear();
+
+            plusButtonClicked = false;
+            minusButtonClicked = false;
+            divideButtonClicked = false;
+            multiplyButtonClicked = false;
+
+            sineButtonClicked = false;
+            cosineButtonClicked = false;
+            tangentButtonClicked = false;
+            sqrtButtonClicked = false;
+            cubeRButtonClicked = false;
+        }
+    }
+}
